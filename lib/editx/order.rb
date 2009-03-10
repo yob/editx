@@ -29,8 +29,12 @@ module EDItX
     xml_accessor :number_of_lines, :in => "Summary", :from => "NumberOfLines", :as => Fixnum
     xml_accessor :units_ordered, :in => "Summary", :from => "UnitsOrdered", :as => Fixnum
 
-    #def initialize
-    #end
+    def initialize
+      self.version = BigDecimal.new("1.2")
+      self.references = []
+      self.dates = []
+      self.items = []
+    end
   end
 
 end
