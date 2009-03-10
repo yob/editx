@@ -15,7 +15,7 @@ context "EDItX::Order" do
 
   specify "should correctly convert to a string" do
     order = EDItX::Order.from_xml(@root.to_s)
-    order.to_xml.to_s[0,6].should eql("<Order")
+    order.to_s[0,6].should eql("<Order")
   end
 
   specify "should provide read access to version number" do

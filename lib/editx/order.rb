@@ -35,6 +35,10 @@ module EDItX
       self.dates = []
       self.items = []
     end
+
+    def to_s
+      self.to_xml.to_s
+    end
   end
 
 end
