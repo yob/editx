@@ -4506,8 +4506,6 @@
   </ItemDetail>
   <Summary>
     <NumberOfLines>179</NumberOfLines>
-    <TotalExcludingTax>2,782.63</TotalExcludingTax>
-    <TotalTax>278.32</TotalTax>
-    <TotalPayable>3,060.95</TotalPayable>
+    <UnitsOrdered>25</UnitsOrdered>
   </Summary>
 </Order>

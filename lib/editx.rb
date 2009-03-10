@@ -64,4 +64,5 @@ ROXML::SILENCE_XML_NAME_WARNING = true
 require File.join(File.dirname(__FILE__), "editx", "order", "reference_coded")
 require File.join(File.dirname(__FILE__), "editx", "order", "date_coded")
 require File.join(File.dirname(__FILE__), "editx", "order", "party")
+require File.join(File.dirname(__FILE__), "editx", "order", "item_detail")
 require File.join(File.dirname(__FILE__), "editx", "order")

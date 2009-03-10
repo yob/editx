@@ -60,7 +60,7 @@ context "EDItX::Order" do
     # TODO: messages
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to header attibutes" do
     order = EDItX::Order.new
 
     order.order_number = "1234"
@@ -70,5 +70,23 @@ context "EDItX::Order" do
     order.to_xml.to_s.include?("<IssueDateTime>20090310</IssueDateTime>").should be_true
 
   end
+
+  specify "should provide read access to order lines" do
+    order = EDItX::Order.from_xml(@root.to_s)
+
+    order.items.should be_a_kind_of(Array)
+    order.items.size.should eql(178)
+  end
+
+  specify "should provide write access to order lines"
+
+  specify "should provide read access to summary values" do
+    order = EDItX::Order.from_xml(@root.to_s)
+
+    order.number_of_lines.should eql(179)
+    order.units_ordered.should eql(25)
+  end
+
+  specify "should provide write access to summary values"
 
 end

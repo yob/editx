@@ -4,6 +4,7 @@ module EDItX
 
     xml_name "Order"
 
+    # header values
     xml_accessor :version, :from => "@version", :as => BigDecimal, :to_xml => EDItX::Formatters.decimal
     xml_accessor :order_number, :in => "Header", :from => "OrderNumber"
     xml_accessor :issue_date_time, :in => "Header", :from => "IssueDateTime", :as => DateTime, :to_xml => EDItX::Formatters.yyyymmdd
@@ -20,6 +21,13 @@ module EDItX
     xml_accessor :shipping_instructions_code, :in => "Header", :from => "ShippingInstructionsCode"
     xml_accessor :invoice_instructions_code, :in => "Header", :from => "InvoiceInstructionsCode"
     xml_accessor :discount_percentage, :in => "Header", :from => "DiscountPercentage", :as => BigDecimal, :to_xml => EDItX::Formatters.decimal
+
+    # detail
+    xml_accessor :items, :from => "ItemDetail", :as => [EDItX::Order::ItemDetail]
+
+    # footer / summary
+    xml_accessor :number_of_lines, :in => "Summary", :from => "NumberOfLines", :as => Fixnum
+    xml_accessor :units_ordered, :in => "Summary", :from => "UnitsOrdered", :as => Fixnum
 
     #def initialize
     #end
