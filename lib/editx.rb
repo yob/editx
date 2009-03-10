@@ -61,4 +61,7 @@ ROXML::SILENCE_XML_NAME_WARNING = true
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them
+require File.join(File.dirname(__FILE__), "editx", "order", "reference_coded")
+require File.join(File.dirname(__FILE__), "editx", "order", "date_coded")
+require File.join(File.dirname(__FILE__), "editx", "order", "party")
 require File.join(File.dirname(__FILE__), "editx", "order")

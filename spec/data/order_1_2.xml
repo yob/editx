@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Order>
+<Order version="1.2">
   <Header>
     <OrderNumber>3594</OrderNumber>
     <IssueDateTime>20080624T0414</IssueDateTime>
@@ -10,10 +10,13 @@
       <ReferenceDate>20080624</ReferenceDate>
     </ReferenceCoded>
     <PurposeCode>Original</PurposeCode>
+    <CurrencyCode>AUD</CurrencyCode>
+    <CountryCode>AU</CountryCode>
     <DateCoded>
       <Date>20080708</Date>
       <DateQualifierCode>FillAllAvailableBy</DateQualifierCode>
     </DateCoded>
+    <FillTermsCode>FillPartBackorderRemainderShipAsAvailable</FillTermsCode>
     <BuyerParty>
       <PartyID>
         <PartyIDType>SAN</PartyIDType>
@@ -49,12 +52,7 @@
     </BillToParty>
     <ShippingInstructionsCode>ShipCombined</ShippingInstructionsCode>
     <InvoiceInstructionsCode>InvoiceCombined</InvoiceInstructionsCode>
-    <PaymentTerms>
-      <NetDaysDue>30</NetDaysDue>
-    </PaymentTerms>
-    <Allowance>
-      <Percent>0</Percent>
-    </Allowance>
+    <DiscountPercentage>30</DiscountPercentage>
   </Header>
   <ItemDetail>
     <LineNumber>1</LineNumber>
