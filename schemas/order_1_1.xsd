@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="editx_codelists.xsd"/>
+	<xs:element name="Order">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Header">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OrderNumber" type="xs:string"/>
+							<xs:element name="IssueDateTime" type="DateOrDateTime"/>
+							<xs:element name="ReferenceCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ReferenceTypeCode" type="OrderReferenceTypeCode"/>
+										<xs:choice>
+											<xs:sequence>
+												<xs:element name="ReferenceNumber" type="xs:string"/>
+												<xs:element name="ReferenceDate" type="Date" minOccurs="0"/>
+											</xs:sequence>
+											<xs:element name="ReferenceDate" type="Date">
+												<?editx nodoc?>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PurposeCode" type="PurposeCode"/>
+							<xs:element name="CurrencyCode" type="CurrencyCode" minOccurs="0"/>
+							<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+							<xs:element name="DateCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Date" type="Date"/>
+										<xs:element name="DateQualifierCode" type="OrderDateQualifierCode"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FillTermsCode" type="FillTermsCode" minOccurs="0"/>
+							<xs:element name="BuyerParty" type="Party"/>
+							<xs:element name="SellerParty" type="Party"/>
+							<xs:element name="ShipToParty" type="Party" minOccurs="0"/>
+							<xs:element name="BillToParty" type="Party" minOccurs="0"/>
+							<xs:element name="ShipFrom" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Location" type="Location"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OrderQualifierCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OrderQualifierCodeType" type="OrderQualifierCodeTypeCode"/>
+										<xs:element name="OrderQualifierCode" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Delivery" type="Delivery" minOccurs="0"/>
+							<xs:element name="ShippingInstructionsCode" type="ShippingInstructionsCode" minOccurs="0"/>
+							<xs:element name="InvoiceInstructionsCode" type="InvoiceInstructionsCode" minOccurs="0"/>
+							<xs:choice minOccurs="0">
+								<xs:element name="PaymentTerms" type="PaymentTerms"/>
+								<xs:element name="PaymentTermsCoded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="PaymentTermsCodeType" type="PaymentTermsCodeTypeCode"/>
+											<xs:element name="PaymentTermsCode"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="DiscountPercentage" type="xs:decimal" minOccurs="0"/>
+							<xs:element name="AdditionalService" type="AdditionalService" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="Message" type="Message" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ItemDetail" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="LineNumber" type="xs:int"/>
+							<xs:element name="ProductID" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ProductIDType" type="ProductIDAgencyCode"/>
+										<xs:element name="IDTypeName" type="xs:string" minOccurs="0"/>
+										<xs:element name="Identifier" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ItemDescription" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TitleDetail" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ItemRelatedParty" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PartyRole" type="xs:string" minOccurs="0"/>
+										<xs:element name="PartyID" type="PartyID"/>
+										<xs:element name="AdditionalPartyID" type="AdditionalPartyID" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="PartyName" type="PartyName" minOccurs="0"/>
+										<xs:element name="PostalAddress" type="PostalAddress" minOccurs="0"/>
+										<xs:element name="CommunicationDetails" type="CommunicationDetails" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="ContactPerson" type="ContactPerson" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OrderQuantity" type="xs:int"/>
+							<xs:element name="BatchBonus" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BatchBonusType" type="xs:string"/>
+										<xs:element name="BatchBonusQuantity" type="xs:int"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ReferenceCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ReferenceTypeCode" type="OrderItemReferenceTypeCode"/>
+										<xs:choice>
+											<xs:sequence>
+												<xs:element name="ReferenceNumber" type="xs:string"/>
+												<xs:element name="ReferenceDate" type="Date" minOccurs="0"/>
+											</xs:sequence>
+											<xs:element name="ReferenceDate" type="Date">
+												<?editx nodoc?>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DateCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Date" type="Date"/>
+										<xs:element name="DateQualifierCode" type="OrderDateQualifierCode"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FillTermsCode" type="ItemFillTermsCode" minOccurs="0"/>
+							<xs:element name="OrderItemQualifierCoded" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OrderItemQualifierCodeType" type="OrderItemQualifierCodeTypeCode"/>
+										<xs:element name="OrderItemQualifierCode" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PricingDetail" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Price">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="MonetaryAmount" type="xs:decimal"/>
+													<xs:element name="CurrencyCode" type="CurrencyCode" minOccurs="0"/>
+													<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+													<xs:element name="PriceQualifierCode" type="OrderPriceQualifierCode"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DiscountPercentage" type="xs:decimal" minOccurs="0"/>
+										<xs:element name="DiscountDetail" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DiscountCodeType" type="DiscountCodeTypeCode"/>
+													<xs:element name="DiscountPart" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DiscountCode" type="xs:string"/>
+																<xs:element name="DiscountPercentage" type="xs:decimal" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ReturnsConditions" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LastDateForReturns" type="Date" minOccurs="0"/>
+										<xs:choice minOccurs="0">
+											<xs:element name="MaximumReturnsPercentage" type="xs:decimal"/>
+											<xs:element name="MaximumReturnsQuantity" type="xs:int"/>
+										</xs:choice>
+										<xs:element name="ReturnsConditionCoded" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ReturnsConditionCodeType" type="ReturnsConditionCodeTypeCode"/>
+													<xs:element name="ReturnsConditionCode" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AdditionalService" type="AdditionalService" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="Message" type="Message" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Summary">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NumberOfLines" type="xs:int"/>
+							<xs:element name="UnitsOrdered" type="xs:int" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required" fixed="1.1">
+				<?editx nodoc?>
+			</xs:attribute>
+		</xs:complexType>
+		<?editx title=Order?>
+	</xs:element>
+	<xs:complexType name="AdditionalPartyID">
+		<xs:sequence>
+			<xs:element name="PartyIDType" type="OtherPartyIDAgencyCode"/>
+			<xs:element name="Identifier" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdditionalService">
+		<xs:sequence>
+			<xs:element name="ServiceDescriptionCoded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceDescriptionCodeType" type="ServiceDescriptionCodeTypeCode"/>
+						<xs:element name="ServiceDescriptionCode" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ServiceQuantity" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceQuantityDescription" type="xs:string" minOccurs="0"/>
+						<xs:element name="QuantityDetail">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Value" type="xs:string"/>
+									<xs:element name="ReferenceUnit" type="xs:string" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdditionalServiceDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReferenceCoded" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReferenceTypeCode" type="ServiceReferenceTypeCode"/>
+						<xs:choice>
+							<xs:sequence>
+								<xs:element name="ReferenceNumber" type="xs:string"/>
+								<xs:element name="ReferenceDate" type="Date" minOccurs="0"/>
+							</xs:sequence>
+							<xs:element name="ReferenceDate" type="Date">
+								<?editx nodoc?>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PricingDetail" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Price">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="MonetaryAmount" type="xs:decimal"/>
+									<xs:element name="CurrencyCode" type="CurrencyCode" minOccurs="0"/>
+									<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+									<xs:element name="PriceQualifierCode" type="ServicePriceQualifierCode"/>
+									<xs:element name="Tax" type="Tax" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DiscountPercentage" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="DiscountDetail" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DiscountCodeType" type="DiscountCodeTypeCode"/>
+									<xs:element name="DiscountPart" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="DiscountCode" type="xs:string"/>
+												<xs:element name="DiscountPercentage" type="xs:decimal" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Carrier">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="CarrierNameCoded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="CarrierNameCodeType" type="CarrierNameCodeTypeCode"/>
+								<xs:element name="CarrierNameCode" type="xs:string"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CarrierName" type="CarrierName" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element name="CarrierName" type="CarrierName"/>
+			</xs:choice>
+			<xs:element name="CarrierService" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommunicationDetails">
+		<xs:sequence>
+			<xs:element name="CommunicationTypeCode" type="CommunicationTypeCode"/>
+			<xs:element name="CommunicationLocator" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactPerson">
+		<xs:sequence>
+			<xs:element name="ContactRoleCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="PersonName" type="xs:string"/>
+			<xs:element name="CommunicationDetails" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CommunicationTypeCode" type="CommunicationTypeCode"/>
+						<xs:element name="CommunicationLocator" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Delivery">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="DeliveryTimeCode" type="DeliveryTimeCode"/>
+				<xs:element name="VendorDeliveryService" type="VendorDeliveryService" minOccurs="0"/>
+				<xs:element name="Carrier" type="Carrier" minOccurs="0"/>
+				<xs:element name="DeliveryNotes" type="DeliveryNotes" minOccurs="0"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="VendorDeliveryService" type="VendorDeliveryService"/>
+				<xs:element name="Carrier" type="Carrier" minOccurs="0"/>
+				<xs:element name="DeliveryNotes" type="DeliveryNotes" minOccurs="0"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="Carrier" type="Carrier"/>
+				<xs:element name="DeliveryNotes" type="DeliveryNotes" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element name="DeliveryNotes" type="DeliveryNotes"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Location">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="LocationIdentifier" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="LocationIDType" type="LocationIDAgencyCode"/>
+							<xs:element name="IDTypeName" type="xs:string" minOccurs="0"/>
+							<xs:element name="IDValue" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="LocationName" type="LocationName" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element name="LocationName" type="LocationName"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Message">
+		<xs:sequence>
+			<xs:element name="MessageType" type="MessageTypeCode"/>
+			<xs:element name="MessageLine" type="xs:string" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Party">
+		<xs:sequence>
+			<xs:element name="PartyID" type="PartyID"/>
+			<xs:element name="AdditionalPartyID" type="AdditionalPartyID" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PartyName" type="PartyName" minOccurs="0"/>
+			<xs:element name="PostalAddress" type="PostalAddress" minOccurs="0"/>
+			<xs:element name="CommunicationDetails" type="CommunicationDetails" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContactPerson" type="ContactPerson" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartyID">
+		<xs:sequence>
+			<xs:element name="PartyIDType" type="PartyIDAgencyCode"/>
+			<xs:element name="Identifier" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartyName">
+		<xs:sequence>
+			<xs:element name="NameLine" type="xs:string" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentTerms">
+		<xs:choice>
+			<xs:element name="NetDaysDue" type="xs:int"/>
+			<xs:element name="NetDueDate" type="Date"/>
+			<xs:element name="ExtendedDays" type="xs:int"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="PostalAddress">
+		<xs:sequence>
+			<xs:element name="AddressLine" type="xs:string" maxOccurs="unbounded"/>
+			<xs:element name="PostalTownCity" type="xs:string" minOccurs="0"/>
+			<xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountrySubdivision" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountrySubdivisionCode" type="CountrySubEntityCode" minOccurs="0"/>
+			<xs:element name="Country" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountryCode" type="CountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Tax">
+		<xs:sequence>
+			<xs:element name="TaxTypeCode" type="xs:string"/>
+			<xs:element name="TaxRateCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="Percent" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="AmountTaxable" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="TaxAmount" type="xs:decimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Date">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])"/>
+			<xs:pattern value="200[048]0229"/>
+			<xs:pattern value="2[1-9]0[48]0229"/>
+			<xs:pattern value="2\d([2468][048]|[13579][26])0229"/>
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)"/>
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DateOrDateTime">
+		<xs:union memberTypes="Date DateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateTime">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+			<xs:pattern value="200[048]0229T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+			<xs:pattern value="2[1-9]0[48]0229T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+			<xs:pattern value="2\d([2468][048]|[13579][26])0229T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31T([01][0-9]|2[0-3])[0-5][0-9](Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeliveryNotes">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LocationName">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CarrierName">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="VendorDeliveryService">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>
