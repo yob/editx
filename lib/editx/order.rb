@@ -1,3 +1,5 @@
+require 'tempfile'
+
 module EDItX
   class Order
     include ROXML
@@ -38,6 +40,32 @@ module EDItX
 
     def to_s
       self.to_xml.to_s
+    end
+
+    def valid?
+      schema_path = File.join(File.dirname(__FILE__), "..", "..", "schemas")
+      case self.version
+      when BigDecimal.new("1.0")
+        schema_path << "/order_1_0.xsd"
+      when BigDecimal.new("1.1")
+        schema_path << "/order_1_1.xsd"
+      when BigDecimal.new("1.2")
+        schema_path << "/order_1_2.xsd"
+      else
+        raise ArgumentError, "version #{self.version} is invalid"
+      end
+
+      Tempfile.open("editx") do |tf|
+        tf.write self.to_s
+        tf.close
+
+        system("xmllint --schema #{schema_path} #{tf.path} &> /dev/null")
+        if $?.exitstatus == 0
+          return true
+        else
+          return false
+        end
+      end
     end
   end
 

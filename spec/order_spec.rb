@@ -89,4 +89,9 @@ context "EDItX::Order" do
 
   specify "should provide write access to summary values"
 
+  specify "should be invalid if missing required fields" do
+    order = EDItX::Order.new
+    order.valid?.should be_false
+  end
+
 end
