@@ -56,7 +56,9 @@ module EDItX
 end
 
 # silence some warnings from ROXML
-ROXML::SILENCE_XML_NAME_WARNING = true
+unless ROXML.const_defined?("SILENCE_XML_NAME_WARNING")
+  ROXML::SILENCE_XML_NAME_WARNING = true
+end
 
 # core files
 # - ordering is important, classes need to be defined before any
