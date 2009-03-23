@@ -1,6 +1,50 @@
 require 'tempfile'
 
 module EDItX
+  # A abstraction for creating and generating EDItX Trade Order messages
+  #
+  # == Generating a new order
+  #
+  # The fundamentals are fairly simple. You create a new Order object, set various 
+  # attributes on it, then add 1 or more ItemDetail objects - 1 for each item you
+  # would like to order.
+  #
+  #   msg = EDItX::Order.new
+  #   msg.order_number = self.id
+  #   msg.issue_date_time = self.created_at
+  #   msg.fill_terms_code = "FillPartBackorderRemainderShipAsAvailable"
+  #
+  #   (1..10).each do |idx|
+  #     item = EDItX::Order::ItemDetail.new
+  #     item.line_number = idx
+  #
+  #     ean = EDItX::Order::ProductID.new$
+  #     ean.type = "EAN13"$
+  #     ean.identifier = "product code goes here"$
+  #     item.identifiers << ean
+  #
+  #     p = EDItX::Order::Price.new
+  #     p.monetary_amount = 10.00
+  #     item.prices << p
+  #
+  #     item.title_detail = "Title and author here"
+  #     item.order_quantity
+  #     msg.items << item
+  #   end
+  #
+  #   puts msg.to_s
+  #
+  # The challenge comes in making sure you output a VALID order file. Several elements are
+  # compulsory - I reccommend having a copy of the spec open to check which elements you
+  # need to include, and valid options for elements like fill_terms_code.
+  #
+  # To check the validity of your output, save it to a file and run xmllint on it, using
+  # the schemas distributed with this gem:
+  #
+  #   xmllint --valid --nonet --schema schemas/order_1_2.xsd testfile.ord
+  #
+  # Continue testing with that command until you get output like "testfile.ord validates".
+  #
   class Order
     include ROXML
 
