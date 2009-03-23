@@ -60,6 +60,7 @@ spec = Gem::Specification.new do |s|
     "lib/**/*.rb",
     "README.markdown",
     "CHANGELOG",
+    "schemas/*.xsd",
     "tasks/**/*.rb",
     "tasks/**/*.rake"
   ]
