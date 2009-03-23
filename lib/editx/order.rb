@@ -14,7 +14,7 @@ module EDItX
     xml_accessor :purpose_code, :in => "Header", :from => "PurposeCode"
     xml_accessor :currency_code, :in => "Header", :from => "CurrencyCode"
     xml_accessor :country_code, :in => "Header", :from => "CountryCode"
-    xml_accessor :dates, :in => "Header", :from => "ReferenceCoded", :as => [EDItX::Order::DateCoded]
+    xml_accessor :dates, :in => "Header", :from => "DateCoded", :as => [EDItX::Order::DateCoded]
     xml_accessor :fill_terms_code, :in => "Header", :from => "FillTermsCode"
     xml_accessor :buyer_party, :in => "Header", :from => "BuyerParty", :as => EDItX::Order::Party
     xml_accessor :seller_party, :in => "Header", :from => "SellerParty", :as => EDItX::Order::Party

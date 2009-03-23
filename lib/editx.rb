@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bigdecimal'
 
 # ensure we load the correct gem versions
-gem 'roxml', '2.5.1'
+gem 'roxml', '2.5.2'
 gem 'andand'
 
 # and now load the actual gems
@@ -64,5 +64,13 @@ ROXML::SILENCE_XML_NAME_WARNING = true
 require File.join(File.dirname(__FILE__), "editx", "order", "reference_coded")
 require File.join(File.dirname(__FILE__), "editx", "order", "date_coded")
 require File.join(File.dirname(__FILE__), "editx", "order", "party")
+require File.join(File.dirname(__FILE__), "editx", "order", "product_id")
+require File.join(File.dirname(__FILE__), "editx", "order", "order_item_qualifier_coded")
+require File.join(File.dirname(__FILE__), "editx", "order", "price")
+require File.join(File.dirname(__FILE__), "editx", "order", "discount_part")
+require File.join(File.dirname(__FILE__), "editx", "order", "discount_detail")
+require File.join(File.dirname(__FILE__), "editx", "order", "returns_condition_coded")
+require File.join(File.dirname(__FILE__), "editx", "order", "returns_conditions")
+require File.join(File.dirname(__FILE__), "editx", "order", "message")
 require File.join(File.dirname(__FILE__), "editx", "order", "item_detail")
 require File.join(File.dirname(__FILE__), "editx", "order")
