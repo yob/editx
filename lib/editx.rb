@@ -12,8 +12,8 @@ require 'andand'
 module EDItX
   module Version #:nodoc:
     Major = 0
-    Minor = 0
-    Tiny  = 1
+    Minor = 1
+    Tiny  = 0
 
     String = [Major, Minor, Tiny].join('.')
   end
