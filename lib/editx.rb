@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bigdecimal'
 
 # ensure we load the correct gem versions
-gem 'roxml', '2.5.2'
+gem 'roxml', '2.5.3'
 gem 'andand'
 
 # and now load the actual gems
