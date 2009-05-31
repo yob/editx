@@ -5,7 +5,7 @@ module EDItX
   #
   # == Generating a new order
   #
-  # The fundamentals are fairly simple. You create a new Order object, set various
+  # The fundamentals are fairly simple. You create a new Order object, set various 
   # attributes on it, then add 1 or more ItemDetail objects - 1 for each item you
   # would like to order.
   #
@@ -50,10 +50,6 @@ module EDItX
 
     xml_name "Order"
 
-    # schema details
-    xml_accessor :xsi, :from => "@xmlns:xsi"
-    xml_accessor :schema_location, :from => "@xsi:schemaLocation"
-
     # header values
     xml_accessor :version, :from => "@version", :as => BigDecimal, :to_xml => EDItX::Formatters.decimal
     xml_accessor :order_number, :in => "Header", :from => "OrderNumber"
@@ -80,28 +76,14 @@ module EDItX
     xml_accessor :units_ordered, :in => "Summary", :from => "UnitsOrdered", :as => Fixnum
 
     def initialize
-      self.xsi = "http://www.w3.org/2001/XMLSchema-instance"
-      self.schema_location = "EDItX_TradeOrder_V1.2.xsd"
       self.version = BigDecimal.new("1.2")
       self.references = []
       self.dates = []
       self.items = []
     end
 
-    # use this method to set the version this file adheres to if you want to also
-    # change the schema file name in the root element.
-    #
-    def schema_version=(val)
-      self.version=(val)
-      if self.version.kind_of?(BigDecimal)
-        self.schema_location = "EDItX_TradeOrder_V#{val.to_s("F")}.xsd"
-      else
-        self.schema_location = nil
-      end
-    end
-
     def to_s
-      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + self.to_xml.to_s
+      self.to_xml.to_s
     end
 
     def valid?
