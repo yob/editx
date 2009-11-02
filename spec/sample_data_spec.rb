@@ -1,8 +1,6 @@
 # coding: utf-8
 
-$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
-
-require 'editx'
+require File.dirname(__FILE__) + '/spec_helper'
 
 context "spec/data/order_1_1.xml" do
 
