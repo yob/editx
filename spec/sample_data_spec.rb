@@ -12,7 +12,7 @@ context "spec/data/order_1_1.xml" do
   end
 
   specify "should be a valid EDItX Trade Order 1.1 file" do
-    system("xmllint --schema #{@schema_path} #{@file_path} &> /dev/null")
+    system("xmllint --schema #{@schema_path} #{@file_path} > /dev/null 2>&1")
     $?.exitstatus.should eql(0)
   end
 
@@ -28,7 +28,7 @@ context "spec/data/order_1_2.xml" do
   end
 
   specify "should be a valid EDItX Trade Order 1.2 file" do
-    system("xmllint --schema #{@schema_path} #{@file_path} &> /dev/null")
+    system("xmllint --schema #{@schema_path} #{@file_path} > /dev/null 2>&1")
     $?.exitstatus.should eql(0)
   end
 

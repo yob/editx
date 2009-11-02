@@ -103,7 +103,7 @@ module EDItX
         tf.write self.to_s
         tf.close
 
-        system("xmllint --schema #{schema_path} #{tf.path} &> /dev/null")
+        system("xmllint --schema #{schema_path} #{tf.path} > /dev/null 2>&1")
         if $?.exitstatus == 0
           return true
         else
