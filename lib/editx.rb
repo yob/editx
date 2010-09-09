@@ -9,7 +9,7 @@ module EDItX
   module Version #:nodoc:
     Major = 0
     Minor = 2
-    Tiny  = 0
+    Tiny  = 1
 
     String = [Major, Minor, Tiny].join('.')
   end
