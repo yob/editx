@@ -35,7 +35,7 @@ module EDItX
   #   puts msg.to_s
   #
   # The challenge comes in making sure you output a VALID order file. Several elements are
-  # compulsory - I reccommend having a copy of the spec open to check which elements you
+  # compulsory - I recommend having a copy of the spec open to check which elements you
   # need to include, and valid options for elements like fill_terms_code.
   #
   # To check the validity of your output, save it to a file and run xmllint on it, using
