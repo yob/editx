@@ -1,3 +1,8 @@
+v0.2.1 (9th September 2010)
+- use an alternative release of roxml that
+  - is compatible it activesupport 2.x and 3.x
+  - doesn'tchange the behaviour of nokogiri when it monkey patches
+
 v0.2.0 (2nd November 2009)
 - bump roxml dependency to 3.x
   - increased stability
